@@ -5,8 +5,10 @@ set(CMAKE_CXX_STANDARD 17)
 
 # Set the path to your LLVM and Clang installation
 set(LLVM_DIR "D:/Software/Installed/llvmclang/lib/cmake/llvm")
+set(Clang_DIR "D:/Software/Installed/llvmclang/lib/cmake/clang")
 
 find_package(LLVM REQUIRED CONFIG)
+find_package(Clang REQUIRED CONFIG)
 
 message(STATUS "Found LLVM ${LLVM_PACKAGE_VERSION}")
 message(STATUS "Using LLVMConfig.cmake in: ${LLVM_DIR}")
@@ -32,11 +34,13 @@ add_executable(CheckClang main.cpp)
 # that we wish to use
 llvm_map_components_to_libnames(llvm_libs support core irreader)
 
+# Other clang libs clangTooling clangAST clangASTMatchers clangBasic
 # Link against LLVM libraries
-target_link_libraries(CheckClang ${llvm_libs})
+target_link_libraries(CheckClang ${llvm_libs} clangTooling)
 
 # List of possible runtime library settings
-set(runtime_library_settings "/MD" "/MDd" "/MT" "/MTd")
+set(runtime_library_settings )
 
+# These compile options are available /MD /MDd /MT /MTd
 # Set the runtime library option for the target
 target_compile_options(CheckClang PRIVATE /MD)
