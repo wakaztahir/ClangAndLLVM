@@ -28,9 +28,6 @@ add_definitions(${LLVM_DEFINITIONS_LIST})
 # Your executable target
 add_executable(CheckClang main.cpp)
 
-# Set the runtime library option for the target
-target_compile_options(CheckClang PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-
 # Find the libraries that correspond to the LLVM components
 # that we wish to use
 llvm_map_components_to_libnames(llvm_libs support core irreader)
