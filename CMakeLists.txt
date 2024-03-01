@@ -36,10 +36,39 @@ llvm_map_components_to_libnames(llvm_libs support core irreader)
 
 # Other clang libs clangTooling clangAST clangASTMatchers clangBasic
 # Link against LLVM libraries
-target_link_libraries(CheckClang ${llvm_libs} clangTooling)
+#LLVMX86AsmParser # MC, MCParser, Support, X86Desc, X86Info
+#LLVMX86Desc # MC, Support, X86AsmPrinter, X86Info
+#LLVMX86AsmPrinter # MC, Support, X86Utils
+#LLVMX86Info # MC, Support, Target
+#LLVMX86Utils # Core, Support
+#LLVMipo
+#LLVMScalarOpts
+#LLVMInstCombine
+#LLVMTransformUtils
+#LLVMipa
+#LLVMAnalysis
+#LLVMTarget
+#LLVMOption # Support
+#LLVMMCParser # MC, Support
+#LLVMMC # Object, Support
+#LLVMObject # BitReader, Core, Support
+#LLVMBitReader # Core, Support
+#LLVMCore # Support
+#LLVMSupport
+target_link_libraries(CheckClang ${llvm_libs})
 
-# List of possible runtime library settings
-set(runtime_library_settings )
+#clangFrontend
+#clangSerialization
+#clangDriver
+#clangParse
+#clangSema
+#clangAnalysis
+#clangAST
+#clangBasic
+#clangEdit
+#clangLex
+#clangTooling
+target_link_libraries(CheckClang clangTooling)
 
 # These compile options are available /MD /MDd /MT /MTd
 # Set the runtime library option for the target
